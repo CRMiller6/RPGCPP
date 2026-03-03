@@ -54,4 +54,9 @@ void Player::Update() {
     if (room->GetLocation(tryPos) == 'D') {
         room->OpenDoor(tryPos);
     }
+
+    if (room->GetLocation(tryPos) == 'T') {
+        m_treasure++;
+        room->ClearLocation(tryPos);
+    }
 }
