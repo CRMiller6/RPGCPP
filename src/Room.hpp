@@ -2,10 +2,10 @@
 
 #include <vector>
 #include "Door.hpp"
+#include "Monster.hpp"
 
 class Entity;
 class Player;
-class Monster;
 
 class Room {
 public:
@@ -15,10 +15,14 @@ public:
     char GetLocation(Vec2 _pos);
     void ClearLocation(Vec2 _pos);
     void OpenDoor(Vec2 _pos);
+
+    const std::vector<Monster*>& GetMonsters() const { return m_monsters; }
+
+    void PrintRoomStatus();
 private:
     std::vector<Entity*> m_entities;
     Player* m_player = nullptr;
-    std::vector<Monster*> m_monsters;
+    std::vector<Monster*> m_monsters; // full type now known
     std::vector<std::vector<char>> m_map;
     std::vector<Door> m_doors;
 };

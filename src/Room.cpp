@@ -1,6 +1,8 @@
 #include "Room.hpp"
 
 #include "Player.hpp"
+#include "Goblin.hpp"
+#include "Slime.hpp"
 
 #include <fstream>
 #include <string>
@@ -89,6 +91,21 @@ void Room::Load(std::string _path)
                     doorCount++;
                 }
             }
+            if (m_map[y][x] == 'G') {
+                Monster* goblin = new Goblin();
+                goblin->Start(Vec2(x, y));
+                goblin->room = this;
+                m_monsters.push_back(goblin);
+                m_map[y][x] = ' '; // clear map so monster draws itself
+            }
+
+            if (m_map[y][x] == 'O') {
+                Monster* slime = new Slime();
+                slime->Start(Vec2(x, y));
+                slime->room = this;
+                m_monsters.push_back(slime);
+                m_map[y][x] = ' ';
+            }
         }
     }
 }
@@ -96,11 +113,29 @@ void Room::Load(std::string _path)
 void Room::Update()
 {
     Draw();
+    PrintRoomStatus();
     if (m_player != nullptr)
     {
         m_player->room = this;
         m_player->Update();
     }
+}
+
+void Room::PrintRoomStatus() {
+    if (m_player) {
+        std::cout << "\n" << m_player->stats.name 
+                  << " HP: " << m_player->stats.HP << "/" << m_player->stats.maxHP
+                  << "| Coins: " << m_player->stats.coins << "\n";
+    }
+
+    /*
+    for (Monster* m : m_monsters) {
+        if (!m->IsDead()) {
+            std::cout << m->stats.name 
+                      << " HP: " << m->stats.HP << "/" << m->stats.maxHP 
+                      << "\n";
+        }
+    }*/
 }
 
 void Room::Draw()
@@ -113,6 +148,10 @@ void Room::Draw()
         }
         printf("\n");
     }
+    /*
+    for (Monster* m : m_monsters)
+        if (!m->IsDead())
+            std::cout << m->stats.name << " HP: " << m->stats.HP << "/" << m->stats.maxHP << "\n";*/
 }
 
 char Room::GetLocation(Vec2 _pos)
@@ -120,6 +159,10 @@ char Room::GetLocation(Vec2 _pos)
     if (_pos.y >= m_map.size())
         return ' ';
     
+    for (Monster* m : m_monsters)
+        if (!m->IsDead() && m->GetPosition() == _pos)
+            return m->Draw();
+
     if (_pos.x >= m_map[_pos.y].size())
         return ' ';
 
