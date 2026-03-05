@@ -145,7 +145,7 @@ if (targetEnemy) {
     }
 
     if (room->GetLocation(tryPos) == 'T') {
-        m_treasure++;
+        stats.coins += 5;
         room->ClearLocation(tryPos);
     }
 
