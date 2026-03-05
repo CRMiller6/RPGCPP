@@ -15,17 +15,17 @@ struct Stats
     int coins = 0;
 };
 
-class Room; // forward declaration
+class Room;
 
 class Entity {
 public:
     virtual ~Entity() {}
     
     void SetPosition(Vec2 _pos) { m_position = _pos; }
-    
+
     Room* room = nullptr;
 
-    virtual void Start(Vec2 _pos) {}  // base Start
+    virtual void Start(Vec2 _pos) {}
 
     virtual void Update() {}
 

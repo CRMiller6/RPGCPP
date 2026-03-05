@@ -25,4 +25,5 @@ private:
     std::vector<Monster*> m_monsters; // full type now known
     std::vector<std::vector<char>> m_map;
     std::vector<Door> m_doors;
+    std::string m_healMessage;
 };

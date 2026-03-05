@@ -116,6 +116,21 @@ void Room::Load(std::string _path)
             }
         }
     }
+        // Heal a little when entering a room
+    if (m_player)
+    {
+        int healChance = random_int(1, 100); // 1–100%
+        if (healChance <= 50) { // 50% chance to heal
+            int healAmount = random_int(1, 3); // heal 1–3 HP
+            m_player->stats.HP += healAmount;
+            if (m_player->stats.HP > m_player->stats.maxHP)
+                m_player->stats.HP = m_player->stats.maxHP;
+
+            m_healMessage = "You feel refreshed and recover " + std::to_string(healAmount) + " HP!";
+        } else {
+            m_healMessage = ""; // no message
+        }
+}
 }
 
 void Room::Update()
@@ -123,6 +138,10 @@ void Room::Update()
     system("cls");
     Draw();
     PrintRoomStatus();
+    if (!m_healMessage.empty()) {
+        std::cout << "\n" << m_healMessage << "\n";
+        m_healMessage = ""; // clear after showing
+    }
     if (m_player != nullptr)
     {
         m_player->room = this;

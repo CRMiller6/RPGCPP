@@ -3,7 +3,7 @@
 #include "fogpi/io.hpp"
 #include <limits>
 #include <iostream>
-
+#include <limits>
 
 
 void Player::Start(Vec2 _pos) {
@@ -19,8 +19,7 @@ void Player::Start(Vec2 _pos) {
     stats.coins = 0;
 }
 
-#include <iostream>
-#include <limits>
+
 
 void ClearInputBuffer() {
     // Flush everything up to and including the next newline
