@@ -104,10 +104,10 @@ if (targetEnemy) {
     std::cout << "\nYou encounter a " << targetEnemy->stats.name << "!\n";
     WaitForEnter();
 
-    // Player attacks once
+    // Player attacks
     AttackEnemy(targetEnemy);
 
-    // Monster retaliates if alive
+    // Monster attacks if alive
     if (!targetEnemy->IsDead()) {
         int attackRoll = random_int(1, 20) + targetEnemy->stats.attackBonus;
         std::cout << targetEnemy->stats.name << " attacks you! Rolled "

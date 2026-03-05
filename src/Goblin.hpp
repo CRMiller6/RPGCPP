@@ -16,6 +16,6 @@ public:
         stats.attackBonus = 1;
         stats.DiceAmount = 1;
         stats.DiceSides = 6;
-        stats.coins = 5;
+        stats.coins = 3;
     }
 };

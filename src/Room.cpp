@@ -74,13 +74,20 @@ void Room::Load(std::string _path)
         for (int x = 0; x < m_map[y].size(); x++)
         {
             if (m_map[y][x] == 'S')
-            {
-                if (m_player == nullptr)
-                    m_player = new Player();
-                
-                m_player->Start(Vec2(x,y));
-                m_map[y][x] = ' ';
-            }
+                {
+                    if (m_player == nullptr)
+                    {
+                        m_player = new Player();
+                        m_player->Start(Vec2(x,y));
+                    }
+                    else
+                    {
+                        // just move player to spawn instead of making a new player
+                        m_player->SetPosition(Vec2(x,y));
+                    }
+
+                    m_map[y][x] = ' ';
+                }
 
             if (m_map[y][x] == 'D' || m_map[y][x] == 'L')
             {
@@ -112,6 +119,7 @@ void Room::Load(std::string _path)
 
 void Room::Update()
 {
+    system("cls");
     Draw();
     PrintRoomStatus();
     if (m_player != nullptr)
@@ -125,7 +133,7 @@ void Room::PrintRoomStatus() {
     if (m_player) {
         std::cout << "\n" << m_player->stats.name 
                   << " HP: " << m_player->stats.HP << "/" << m_player->stats.maxHP
-                  << "| Coins: " << m_player->stats.coins << "\n";
+                  << " | Coins: " << m_player->stats.coins << "\n";
     }
 
     /*
