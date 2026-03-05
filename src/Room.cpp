@@ -9,6 +9,7 @@
 
 void Room::Load(std::string _path)
 {
+    m_monsters.clear();
     m_map.clear();
     m_doors.clear();
 

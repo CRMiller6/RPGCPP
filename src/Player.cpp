@@ -62,6 +62,12 @@ void Player::AttackEnemy(Entity* enemy) {
 void Player::Update() {
     //while(request_char("hit w to continue: ") != 'w') {}
 
+    if (IsDead())
+        {
+            std::cout << "\nYou have died.\n";
+            std::cout << "Gold collected: " << stats.coins << std::endl;
+            exit(0);
+        }
     char directionInput;
 
     do {
@@ -100,9 +106,14 @@ void Player::Update() {
         if (m->GetPosition() == tryPos && !m->IsDead())
             targetEnemy = m;
 
-if (targetEnemy) {
-    std::cout << "\nYou encounter a " << targetEnemy->stats.name << "!\n";
-    WaitForEnter();
+    if (targetEnemy) {
+        char first = tolower(targetEnemy->stats.name[0]);
+
+        if (first == 'a' || first == 'e' || first == 'i' || first == 'o' || first == 'u')
+            std::cout << "\nYou encounter an " << targetEnemy->stats.name << "!\n";
+        else
+            std::cout << "\nYou encounter a " << targetEnemy->stats.name << "!\n";    
+        WaitForEnter();
 
     // Player attacks
     AttackEnemy(targetEnemy);
