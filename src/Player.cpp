@@ -145,8 +145,15 @@ if (targetEnemy) {
     }
 
     if (room->GetLocation(tryPos) == 'T') {
-        stats.coins += 5;
-        room->ClearLocation(tryPos);
+        if (m_keyCount > 0)
+        {
+            stats.coins += 5;
+            room->ClearLocation(tryPos);
+        }
+        else
+        {
+            return;
+        }
     }
 
     if (room->GetLocation(tryPos) == ' ') {
