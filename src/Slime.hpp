@@ -9,7 +9,7 @@ public:
         m_position = _pos;
         m_character = 'O';
 
-        stats.name = "Slime";
+        stats.name = "Ooze";
         stats.maxHP = 12;
         stats.HP = 12;
         stats.AC = 5;
