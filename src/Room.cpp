@@ -6,6 +6,7 @@
 
 #include <fstream>
 #include <string>
+#include <random>
 
 void Room::Load(std::string _path)
 {
@@ -214,11 +215,23 @@ void Room::ClearLocation(Vec2 _pos)
 
 void Room::OpenDoor(Vec2 _pos)
 {
-    for(int i = 0; i < m_doors.size(); i++)
-    {
-        if (m_doors[i].pos == _pos)
-        {
-            Load(m_doors[i].path.c_str());
-        }
-    }
+    if (m_doors.empty())
+        return;
+
+    // checks if you have a key so you cant go to treasure room without one
+    /*
+    int r;
+    std::string next;
+
+    do {
+        r = random_int(0, m_doors.size() - 1);
+        next = m_doors[r].path;
+    } while (next == "assets/treasure.map" && m_player->m_keyCount == 0);
+
+    Load(next);
+    */
+
+    // temporary version without key check to allow testing of all rooms
+    int r = random_int(0, m_doors.size() - 1);
+    Load(m_doors[r].path);
 }

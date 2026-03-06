@@ -158,6 +158,7 @@ void Player::Update() {
         if (m_keyCount > 0)
         {
             stats.coins += 5;
+            m_keyCount -= 1;
             room->ClearLocation(tryPos);
         }
         else

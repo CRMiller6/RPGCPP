@@ -1,4 +1,6 @@
 level 3
+next_level assets/key_room.map
+next_level assets/treasure.map
 next_level assets/level_1.map
 next_level assets/level_2.map
 map

@@ -15,7 +15,7 @@ public:
     char GetLocation(Vec2 _pos);
     void ClearLocation(Vec2 _pos);
     void OpenDoor(Vec2 _pos);
-
+    bool m_foundKeyRoom = false;
     const std::vector<Monster*>& GetMonsters() const { return m_monsters; }
 
     void PrintRoomStatus();
