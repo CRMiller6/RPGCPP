@@ -21,8 +21,8 @@ void Player::Start(Vec2 _pos) {
 
 
 
-void ClearInputBuffer() {
-    // Flush everything up to and including the next newline
+void OnlyOneEnter() {
+    // delete everything up to and including the next newline
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
