@@ -37,7 +37,7 @@ void WaitForEnter() {
 void Player::AttackEnemy(Entity* enemy) {
     int attackRoll = random_int(1, 20) + stats.attackBonus;
     std::cout << stats.name << " attacks " << enemy->stats.name 
-              << "! Rolled " << attackRoll << " vs AC " << enemy->stats.AC << std::endl;
+              << "! Rolled " << attackRoll << "\n"<< enemy->stats.name <<" AC: " << enemy->stats.AC << std::endl;
     WaitForEnter();
 
     if (attackRoll >= enemy->stats.AC) {
@@ -121,7 +121,7 @@ void Player::Update() {
     if (!targetEnemy->IsDead()) {
         int attackRoll = random_int(1, 20) + targetEnemy->stats.attackBonus;
         std::cout << targetEnemy->stats.name << " attacks you! Rolled "
-                  << attackRoll << " vs AC " << stats.AC << std::endl;
+                  << attackRoll << "\nPlayer AC: " << stats.AC << std::endl;
         WaitForEnter();
 
         if (attackRoll >= stats.AC) {

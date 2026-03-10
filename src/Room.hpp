@@ -22,7 +22,7 @@ public:
 private:
     std::vector<Entity*> m_entities;
     Player* m_player = nullptr;
-    std::vector<Monster*> m_monsters; // full type now known
+    std::vector<Monster*> m_monsters;
     std::vector<std::vector<char>> m_map;
     std::vector<Door> m_doors;
     std::string m_healMessage;

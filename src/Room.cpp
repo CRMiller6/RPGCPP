@@ -105,7 +105,7 @@ void Room::Load(std::string _path)
                 goblin->Start(Vec2(x, y));
                 goblin->room = this;
                 m_monsters.push_back(goblin);
-                m_map[y][x] = ' '; // clear map so monster draws itself
+                m_map[y][x] = ' ';
             }
 
             if (m_map[y][x] == 'O') {
@@ -129,7 +129,7 @@ void Room::Load(std::string _path)
 
             m_healMessage = "You feel refreshed and recover " + std::to_string(healAmount) + " HP!";
         } else {
-            m_healMessage = ""; // no message
+            m_healMessage = "";
         }
 }
 }
