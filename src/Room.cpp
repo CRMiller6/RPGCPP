@@ -213,6 +213,11 @@ void Room::ClearLocation(Vec2 _pos)
     m_map[_pos.y][_pos.x] = ' ';
 }
 
+/*void Room::UnlockDoor(Vec2 _pos)
+{
+    m_map[_pos.y][_pos.x] = 'D';
+} */
+
 void Room::OpenDoor(Vec2 _pos)
 {
     if (m_doors.empty())
@@ -234,4 +239,27 @@ void Room::OpenDoor(Vec2 _pos)
     // temporary version without key check to allow testing of all rooms
     int r = random_int(0, m_doors.size() - 1);
     Load(m_doors[r].path);
+}
+
+void Room::CheckRoomCleared(){
+    bool monstersRemaining = false;
+
+    for (Monster* m : m_monsters) {
+        if (!m->IsDead()) {
+            monstersRemaining = true;
+            break;
+        }
+    }
+
+    if (!monstersRemaining) {
+        std::cout << "\nThe Last Enemy Falls. You hear the doors unlock.";
+        for (int y = 0; y < m_map.size(); y++) {
+            for (int x=0; x < m_map[y].size(); x++){
+                if (m_map[y][x] == 'L'){
+                    m_map[y][x] = 'D'; 
+                }
+            }
+
+        }
+    }
 }

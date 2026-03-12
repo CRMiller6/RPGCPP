@@ -140,6 +140,9 @@ void Player::Update() {
         std::cout << targetEnemy->stats.name << " is defeated! You loot "
                   << targetEnemy->stats.coins << " coins.\n";
         stats.coins += targetEnemy->stats.coins;
+        
+        room->CheckRoomCleared();
+        
         WaitForEnter();
     }
 
