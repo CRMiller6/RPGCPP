@@ -231,12 +231,12 @@ void Room::OpenDoor(Vec2 _pos)
     do {
         r = random_int(0, m_doors.size() - 1);
         next = m_doors[r].path;
-    } while (next == "assets/treasure.map" && m_player->m_keyCount == 0);
+    } while (next == "assets/level_3.map" && m_player->m_keyCount == 0);
 
     Load(next);
     */
 
-    // temporary version without key check to allow testing of all rooms
+    // temporary version without key check
     int r = random_int(0, m_doors.size() - 1);
     Load(m_doors[r].path);
 }
